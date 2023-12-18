@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:octa/core/routes.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ResponsiveSizer(builder: (p0, p1, p2) => const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -18,4 +19,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
