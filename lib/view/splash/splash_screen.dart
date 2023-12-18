@@ -22,6 +22,12 @@ class _SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<_SplashScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+     final provider = context.watch<SplashProvider>();
+    if (!provider.isLoaded) provider.load(context);
+    return const Scaffold(
+      body: Center(
+        child: Text('Splash page'),
+      ),
+    );
   }
 }
