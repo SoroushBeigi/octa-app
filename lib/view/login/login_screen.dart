@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:octa/view-model/login_provider.dart';
+import 'package:flutter_login/flutter_login.dart' hide LoginProvider;
+import 'package:go_router/go_router.dart';
+import 'package:octa/view-model/login_vm.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -7,8 +9,10 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(create: (_) => LoginProvider(),
-    builder: (context, child) => const _LoginScreen(),);
+    return ChangeNotifierProvider(
+      create: (_) => LoginProvider(),
+      builder: (context, child) => const _LoginScreen(),
+    );
   }
 }
 
@@ -22,6 +26,15 @@ class _LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<_LoginScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    final provider = context.watch<LoginProvider>();
+    return FlutterLogin(
+      title: 'Octa',
+      onLogin: (p0) => provider.login(p0.name,p0.password),
+      onSignup:(p0) => provider.register(),
+      onSubmitAnimationCompleted: () {
+        context.pushReplacement('/home');
+      },
+      onRecoverPassword: (p0) {},
+    );
   }
 }

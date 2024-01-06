@@ -39,6 +39,8 @@ dependencies:
   provider: ^6.1.1
   responsive_sizer: ^3.2.0
   flutter_login: ^4.2.1
+  dio: ^5.4.0
+
 
 dev_dependencies:
   flutter_test:

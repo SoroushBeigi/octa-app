@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:octa/view-model/home_provider.dart';
+import 'package:octa/view-model/home_vm.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {

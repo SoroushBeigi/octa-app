@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:octa/core/theme.dart';
-import 'package:octa/view-model/splash_provider.dart';
+import 'package:octa/view-model/splash_vm.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
