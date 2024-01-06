@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:octa/core/routes.dart';
+import 'package:octa/providers/storage_provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-void main() {
+Future<void> main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await storage.init();
   runApp(ResponsiveSizer(builder: (p0, p1, p2) => const MyApp()));
 }
 

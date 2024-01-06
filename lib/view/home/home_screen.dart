@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:octa/providers/storage_provider.dart';
 import 'package:octa/view-model/home_vm.dart';
 import 'package:provider/provider.dart';
 
@@ -20,6 +21,11 @@ class _HomeScreen extends StatefulWidget {
 }
 
 class __HomeScreenState extends State<_HomeScreen> {
+  @override
+  void initState() {
+    print(storage.token);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return const Placeholder();

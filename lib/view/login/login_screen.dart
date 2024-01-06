@@ -28,6 +28,8 @@ class _LoginScreenState extends State<_LoginScreen> {
   Widget build(BuildContext context) {
     final provider = context.watch<LoginProvider>();
     return FlutterLogin(
+      userType: LoginUserType.name,
+      userValidator: (value) => null,
       title: 'Octa',
       onLogin: (p0) => provider.login(p0.name,p0.password),
       onSignup:(p0) => provider.register(),
