@@ -8,8 +8,10 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(create: (_) => HomeProvider(),
-    builder: (context, child) => const _HomeScreen(),);
+    return ChangeNotifierProvider(
+      create: (_) => HomeProvider(),
+      builder: (context, child) => const _HomeScreen(),
+    );
   }
 }
 
@@ -25,8 +27,25 @@ class __HomeScreenState extends State<_HomeScreen> {
   void initState() {
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    final provider = context.watch<HomeProvider>();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(storage.userName),
+      ),
+      body: Center(
+        child: ListView.builder(
+            itemCount: provider.invoices.length,
+            itemBuilder: (context, index) {
+              final item = provider.invoices[index];
+              return ListTile(
+                title: Text('\$${item.totalPrice}'),
+                subtitle: Text('Vehicle Name: ${item.vehicleName} + Vehice Code: ${item.vehicleCode}'),
+              );
+            }),
+      ),
+    );
   }
 }
