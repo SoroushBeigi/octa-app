@@ -23,7 +23,6 @@ class _HomeScreen extends StatefulWidget {
 class __HomeScreenState extends State<_HomeScreen> {
   @override
   void initState() {
-    print(storage.token);
     super.initState();
   }
   @override
