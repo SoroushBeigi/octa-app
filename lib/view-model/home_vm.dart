@@ -6,7 +6,6 @@ class HomeProvider extends ChangeNotifier {
   final _apiProvider = ApiProvider();
   bool isLoading = true;
   List<Invoice> invoices = [];
-  
   Future<void> loadInvoices() async {
     invoices = await _apiProvider.loadInvoices() ?? [];
     isLoading=false;

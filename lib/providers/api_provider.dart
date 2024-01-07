@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:octa/core/constants.dart';
 import 'package:octa/model/invoice_model.dart';
 import 'package:octa/providers/storage_provider.dart';
 
@@ -35,10 +36,10 @@ class ApiProvider {
     }
   }
 
-  Future<List<Invoice>?> loadInvoices() async {
+  Future<List<Invoice>> loadInvoices() async {
     try {
       final response = await _dio.get(
-        'https://octa-query.liara.run/GetSellInvoicesByCustomerId?customerCode=${storage.userName}',
+        '${Constants.invoicesUrl}${storage.userName}',
       );
       final List<Invoice> fetchedInvoices =
           (response.data['sellInvoiceRMs'] as List)
@@ -46,7 +47,7 @@ class ApiProvider {
               .toList();
               return fetchedInvoices;
     } catch (e) {
-      rethrow;
+      return [];
     }
   }
 }
