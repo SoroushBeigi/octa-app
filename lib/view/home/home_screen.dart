@@ -26,26 +26,58 @@ class __HomeScreenState extends State<_HomeScreen> {
   @override
   void initState() {
     super.initState();
+    final provider = context.read<HomeProvider>();
+    provider.loadInvoices();
   }
 
   @override
   Widget build(BuildContext context) {
     final provider = context.watch<HomeProvider>();
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(97, 97, 97, 1),
       appBar: AppBar(
-        title: Text(storage.userName),
+        backgroundColor: Colors.grey[900],
+        title: Text(
+          'UserName: ${storage.userName}',
+          style: const TextStyle(color: Colors.white),
+        ),
       ),
-      body: Center(
-        child: ListView.builder(
-            itemCount: provider.invoices.length,
-            itemBuilder: (context, index) {
-              final item = provider.invoices[index];
-              return ListTile(
-                title: Text('\$${item.totalPrice}'),
-                subtitle: Text('Vehicle Name: ${item.vehicleName} + Vehice Code: ${item.vehicleCode}'),
-              );
-            }),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => provider.loadWithButton(),
+        child: const Icon(Icons.refresh),
       ),
+      body: provider.isLoading
+          ? const Center(
+              child: CircularProgressIndicator(
+                color: Colors.white,
+              ),
+            )
+          : Center(
+              child: ListView.builder(
+                  itemCount: provider.invoices.length,
+                  itemBuilder: (context, index) {
+                    final item = provider.invoices[index];
+                    return Container(
+                      margin: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(5)),
+                        color: Colors.black.withOpacity(0.5),
+                      ),
+                      child: ListTile(
+                        contentPadding: const EdgeInsets.all(8),
+                        title: Text(
+                          '\$${item.totalPrice}\nCustomer Name: ${item.customerName}',
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                        subtitle: Text(
+                          'Vehicle Name: ${item.vehicleName}, Vehice Code: ${item.vehicleCode}',
+                          style: TextStyle(color: Colors.grey[300]),
+                        ),
+                      ),
+                    );
+                  }),
+            ),
     );
   }
 }

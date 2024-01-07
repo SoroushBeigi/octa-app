@@ -11,7 +11,7 @@ class Storage {
     _sharedPrefs ??= await SharedPreferences.getInstance();
   }
 
-  String get token => _sharedPrefs!.getString('access_token') ?? '';
+  String? get token => _sharedPrefs!.getString('access_token') ?? '';
   String get refreshToken => _sharedPrefs!.getString('refresh_token') ?? '';
   String get userName => _sharedPrefs!.getString('user') ?? '';
 

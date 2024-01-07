@@ -39,10 +39,6 @@ class ApiProvider {
     try {
       final response = await _dio.get(
         'https://octa-query.liara.run/GetSellInvoicesByCustomerId?customerCode=${storage.userName}',
-        // options:
-        //     Options(contentType: Headers.formUrlEncodedContentType, headers: {
-        //   'Content-Type': 'application/x-www-form-urlencoded',
-        // }),
       );
       final List<Invoice> fetchedInvoices =
           (response.data['sellInvoiceRMs'] as List)
@@ -50,7 +46,7 @@ class ApiProvider {
               .toList();
               return fetchedInvoices;
     } catch (e) {
-      return null;
+      rethrow;
     }
   }
 }
