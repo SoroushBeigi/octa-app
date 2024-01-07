@@ -14,7 +14,7 @@ void main() {
       MaterialApp(
         home: ChangeNotifierProvider.value(
           value: homeProvider,
-          child: const HomeScreen(),
+          child: HomeScreen(),
         ),
       ),
     );
