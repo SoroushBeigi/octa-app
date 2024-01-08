@@ -54,6 +54,7 @@ class __HomeScreenState extends State<_HomeScreen> {
             )
           : Center(
               child: ListView.builder(
+                
                   itemCount: provider.invoices.length,
                   itemBuilder: (context, index) {
                     final item = provider.invoices[index];

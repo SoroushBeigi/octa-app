@@ -28,6 +28,7 @@ class _LoginScreenState extends State<_LoginScreen> {
   Widget build(BuildContext context) {
     final provider = context.watch<LoginProvider>();
     return FlutterLogin(
+      theme: LoginTheme(titleStyle: const TextStyle(color: Colors.white)),
       userType: LoginUserType.name,
       userValidator: (value) => null,
       title: 'Octa',

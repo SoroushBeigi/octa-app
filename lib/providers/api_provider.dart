@@ -24,6 +24,7 @@ class ApiProvider {
       storage.setToken('access_token', response.data['access_token']);
       storage.setToken('refresh_token', response.data['refresh_token']);
       storage.setToken('user', userName);
+      storage.setLoggedIn();
       return null;
     } on DioException catch (e) {
       if (e.response == null) {
