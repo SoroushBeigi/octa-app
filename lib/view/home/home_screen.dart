@@ -53,31 +53,34 @@ class __HomeScreenState extends State<_HomeScreen> {
               ),
             )
           : Center(
-              child: ListView.builder(
-                
-                  itemCount: provider.invoices.length,
-                  itemBuilder: (context, index) {
-                    final item = provider.invoices[index];
-                    return Container(
-                      margin: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(5)),
-                        color: Colors.black.withOpacity(0.5),
-                      ),
-                      child: ListTile(
-                        contentPadding: const EdgeInsets.all(8),
-                        title: Text(
-                          '\$${item.totalPrice}\nCustomer Name: ${item.customerName}',
-                          style: const TextStyle(color: Colors.white),
+              child: RefreshIndicator(
+                onRefresh: ()=>provider.loadWithButton(),
+                child: ListView.builder(
+                  
+                    itemCount: provider.invoices.length,
+                    itemBuilder: (context, index) {
+                      final item = provider.invoices[index];
+                      return Container(
+                        margin: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(5)),
+                          color: Colors.black.withOpacity(0.5),
                         ),
-                        subtitle: Text(
-                          'Vehicle Name: ${item.vehicleName}, Vehice Code: ${item.vehicleCode}',
-                          style: TextStyle(color: Colors.grey[300]),
+                        child: ListTile(
+                          contentPadding: const EdgeInsets.all(8),
+                          title: Text(
+                            '\$${item.totalPrice}\nCustomer Name: ${item.customerName}',
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                          subtitle: Text(
+                            'Vehicle Name: ${item.vehicleName}, Vehice Code: ${item.vehicleCode}',
+                            style: TextStyle(color: Colors.grey[300]),
+                          ),
                         ),
-                      ),
-                    );
-                  }),
+                      );
+                    }),
+              ),
             ),
     );
   }
